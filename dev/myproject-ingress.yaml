@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  labels:
+    move2kube.konveyor.io/service: myproject
+  name: myproject
+spec:
+  ingressClassName: crudapp
+  rules:
+    - host: crudapp
+      http:
+        paths:
+          - backend:
+              service:
+                name: crud
+                port:
+                  name: port-8080
+            path: /crud
+            pathType: Prefix
+status:
+  loadBalancer: {}
